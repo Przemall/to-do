@@ -1,16 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
+import styles from "./MainPage.module.scss";
 
 function MainPage() {
-  const [number, setNumber] = useState([]);
-  const [bonus, setBonus] = useState(false);
-  const [value1, setValue1] = useState(0);
-  const [value2, setValue2] = useState(0);
+  const [task, setTask] = useState([]);
+  const [value, setValue] = useState("");
+  const [done, setDone] = useState(true);
 
-  const generateNumber = (number) => {
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      createTask();
+    }
+  };
+
+  const createTask = () => {
+    value && setTask(value ? [...task, value] : "");
+    setValue("");
+  };
+
+  const generateTask = (task) => {
     return (
       <div>
         <ul>
-          <li>{number}</li>
+          <li>
+            <input
+              type="checkbox"
+              onChange={(e) => setDone(e.target.checked)}
+            ></input>
+            {task}
+          </li>
         </ul>
       </div>
     );
@@ -18,34 +36,28 @@ function MainPage() {
 
   return (
     <div>
-      {number.map((num) => generateNumber(num))}
+      <div className={styles.container}>
+        <div className={styles.header}>
+          <h2>To do App</h2>
+        </div>
+        <div className={styles.content}>
+          <h3>Add things to do</h3>
+        </div>
+        <div className={styles.inputArea}>
+          <input
+            placeholder="Type a message"
+            type="text"
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+            onKeyDown={handleKeyDown}
+          ></input>
 
-      <input
-        type="checkbox"
-        checked={bonus}
-        onChange={(e) => setBonus(e.target.checked)}
-      ></input>
-
-      <input
-        type="number"
-        value={value1}
-        onChange={(e) => setValue1(e.target.value)}
-      ></input>
-      <input
-        type="number"
-        value={value2}
-        onChange={(e) => setValue2(e.target.value)}
-      ></input>
-      <input
-        type="submit"
-        onClick={() =>
-          setNumber(
-            bonus
-              ? [...number, (parseInt(value1) + parseInt(value2) + 1000) * 2]
-              : [...number, parseInt(value1) + parseInt(value2) + 1000]
-          )
-        }
-      ></input>
+          <input type="submit" onClick={() => createTask()}></input>
+        </div>
+        <div className={styles.itemsArea}>
+          {task.map((task) => generateTask(task))}
+        </div>
+      </div>
     </div>
   );
 }
