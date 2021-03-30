@@ -1,6 +1,3 @@
-You can view this website here https://wrydzewski90.github.io/communicator/
-
-
 
 
 
