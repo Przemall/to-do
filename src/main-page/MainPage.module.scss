@@ -1,47 +1,87 @@
 body {
-  margin: 0px;
-  height: 100vh;
-  width: 100vw;
+  margin: 0;
   font-family: "Roboto", sans-serif;
-  justify-content: center;
-  align-items: center;
 }
+ul {
+  list-style-type: none;
+}
+
 .container {
   height: 100vh;
-  width: 500px;
-  background: grey;
+  width: 100vw;
+  background: lightgrey;
   background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 
-  .header {
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 50px;
-    margin-top: 40px;
-  }
+  .inner {
+    .header {
+      text-align: center;
+      align-items: center;
+      width: 100%;
+      height: 50px;
+      margin-top: 40px;
+    }
 
-  .content {
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 50px;
-    margin: 30px;
-  }
+    .content {
+      text-align: center;
+      align-items: center;
+      width: 100%;
+      height: 50px;
+    }
 
-  .inputArea {
-    width: 100%;
-    height: 80px;
-  }
-  .itemsArea {
-    width: 100%;
-    flex: 1;
-    overflow: auto;
-    overflow-wrap: break-word;
-    resize: none;
-    outline: none;
+    .inputArea {
+      width: 100%;
+      height: 80px;
+      display: flex;
+      align-items: center;
+
+      .inputsInner {
+        margin: 0 auto;
+      }
+    }
+    .itemsArea {
+      width: 100%;
+      flex: 1;
+      overflow: auto;
+      overflow-wrap: break-word;
+      resize: none;
+      outline: none;
+
+      .isNotDone {
+        background-color: rgb(240, 232, 232);
+        width: 400px;
+        min-height: 50px;
+        max-height: 150px;
+        border: solid darkgray 1px;
+        border-radius: 5px;
+        overflow: hidden;
+        display: flex;
+
+        .isDoneBox {
+          width: 20px;
+          margin: auto 10px;
+        }
+
+        .deleteBox {
+          width: 60px;
+          margin: auto 10px;
+        }
+
+        .task {
+          flex: 1;
+          padding: 10px 0;
+          margin: auto 0;
+          outline: none;
+          overflow-wrap: break-word;
+          overflow: hidden;
+        }
+      }
+
+      .isDone {
+        background-color: lightgray;
+      }
+    }
   }
 }
